@@ -1,0 +1,69 @@
+// LINKED LIST DELETING IN INDEX
+
+#include <stdio.h>
+#include <stdlib.h> // when we use malloc
+struct Node
+{
+    int data;
+    struct Node *next;
+};
+void linkedlistTraversal(struct Node *ptr)
+{
+    while (ptr != NULL)
+    {
+        printf("Element: %d\n", ptr->data);
+        ptr = ptr->next;
+    }
+}
+
+// CASE-2 DELETING THE  ELEMENT AT A GIVEN INDEX FROM  THE LINKED LIST
+struct Node *deleteAtIndex(struct Node *head, int index)
+{
+    struct Node *p = head;
+    struct Node *q = head->next;
+    for (int i = 0; i < index - 1; i++) // index-1 because we assume it can not delete index no 0;
+    {
+        p = p->next;
+        q = q->next;
+    }
+
+    p->next = q->next;
+    free(q);
+
+    return head;
+}
+
+int main()
+{
+
+    struct Node *head;
+    struct Node *second;
+    struct Node *third;
+    struct Node *fourth;
+    // Allocate memory for nodes in linked list in heap//
+    head = (struct Node *)malloc(sizeof(struct Node));
+    second = (struct Node *)malloc(sizeof(struct Node));
+    third = (struct Node *)malloc(sizeof(struct Node));
+    fourth = (struct Node *)malloc(sizeof(struct Node));
+
+    // LINK FIRST AND SECOND NODES
+    head->data = 4;
+    head->next = second;
+    // LINK SECOND AND THIRD NODES
+    second->data = 3;
+    second->next = third;
+
+    // LINK THIRD AND FOURTH NODES
+
+    third->data = 8;
+    third->next = fourth;
+    // TERMINATED THE LIST AT THE fourth
+    fourth->data = 1;
+    fourth->next = NULL;
+    printf("Linklist before deletion\n");
+    linkedlistTraversal(head);
+    head = deleteAtIndex(head, 2); // FOR DELETING FIRST ELEMENT IN LINKED LIST
+    printf("Linklist after deletion\n");
+    linkedlistTraversal(head);
+    return 0;
+}
