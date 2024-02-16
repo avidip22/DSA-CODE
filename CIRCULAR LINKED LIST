@@ -1,0 +1,76 @@
+
+// CIRCULAR LINKED LIST CREATION
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node
+{
+    int data;
+    struct Node *next;
+};
+
+void linkedlistTraversal(struct Node *head)
+{
+    struct Node *ptr = head;
+    do
+    {
+        printf("%d\n", ptr->data);
+        ptr = ptr->next;
+    } while (ptr != head);
+}
+
+struct Node *insertAtfirst(struct Node *head, int data)
+{
+    struct Node *ptr = (struct Node *)malloc(sizeof(struct Node));
+    struct Node *p = head->next;
+    ptr->data = data;
+    while (p->next != head)
+    {
+        p = p->next; // at this point p point at last node of circular linkedlist;
+    }
+    p->next = ptr;
+    ptr->next = head;
+    head = ptr;
+    return head;
+}
+
+int main()
+{
+    struct Node *head;
+    struct Node *second;
+    struct Node *third;
+    struct Node *fourth;
+    struct Node *fifth;
+    struct Node *sixth;
+
+    head = (struct Node *)malloc(sizeof(struct Node));
+    second = (struct Node *)malloc(sizeof(struct Node));
+    third = (struct Node *)malloc(sizeof(struct Node));
+    fourth = (struct Node *)malloc(sizeof(struct Node));
+    fifth = (struct Node *)malloc(sizeof(struct Node));
+    sixth = (struct Node *)malloc(sizeof(struct Node));
+
+    head->data = 7;
+    head->next = second;
+
+    second->data = 8;
+    second->next = third;
+
+    third->data = 64;
+    third->next = fourth;
+
+    fourth->data = 68;
+    fourth->next = fifth;
+
+    fifth->data = 67;
+    fifth->next = head; // when circular linkedlist you have connect your last node to again with head, because of circular
+    printf("Linked list before insertion\n");
+    linkedlistTraversal(head);
+    head = insertAtfirst(head, 80);
+    head = insertAtfirst(head, 56);
+    printf("Linkedlist after insertion\n");
+    linkedlistTraversal(head);
+
+    return 0;
+    
+}
