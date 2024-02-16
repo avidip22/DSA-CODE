@@ -1,0 +1,79 @@
+
+// IMPLEMENT STACK USING C
+#include <stdio.h>
+#include <stdlib.h>
+struct stack
+{
+    int size;
+    int top;
+    int *arr; // this is the pointer we can allocate memory dynamically
+};
+// for checking purpose is stack empty or full
+int isEmpty(struct stack *ptr)
+{
+    if (ptr->top == -1)
+    {
+        return 1; // return 1 means true
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+int isFull(struct stack *ptr)
+{
+    if (ptr->top == ptr->size - 1)
+    {
+        return 1; // return 1 means true
+    }
+    else
+    {
+        return 0;
+    }
+}
+int main()
+{
+    //     struct stack s;
+    //     s.size = 80;
+    //     s.top = -1;
+    //     s.arr = (int*)mallo(s.size * sizeof(int));
+    // Now we make s a pointer because of we can do now call by referene
+    struct stack *s;
+    s->size = 80;
+    s->top = 6 ;
+    s->arr = (int *)malloc(s->size * sizeof(int));
+    // pushing element manully
+    s->arr[0]= 4;
+    s->top++;
+    s->arr[1]= 7;
+    s->top++;
+    s->arr[2]= 8;
+    s->top++;
+    s->arr[3]= 9;
+    s->top++;
+    s->arr[4]= 3;
+    s->top++;
+    s->arr[5]= 4;
+    s->top++;
+    s->arr[6]= 2 ;
+    s->top++;
+
+    //check if stack is empty
+    if(isEmpty(s)) {
+        printf("This stack is empty");
+    }
+    else {
+        printf("stack is not empty");
+    }
+
+//  if stack is full
+    // if(isFull(s)){
+    //     printf("stack is not full");
+    // }
+    // else {
+    //     printf("stack is full");
+    // }
+
+    return 0;
+}
