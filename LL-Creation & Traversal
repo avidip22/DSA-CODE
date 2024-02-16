@@ -1,0 +1,40 @@
+//LINK LIST CREATION AND TRAVERSAL 
+
+
+
+#include<stdio.h>
+#include<stdlib.h> // when we use malloc 
+struct Node{
+    int data;
+    struct Node * next;
+
+};
+
+int main()
+{
+   
+    struct Node * head ;
+    struct Node * second ;
+    struct Node * third;
+    // Allocate memory for nodes in linked list in heap//
+    head = (struct Node * )malloc(sizeof (struct Node));
+    second = (struct Node * )malloc(sizeof (struct Node));
+    third = (struct Node * )malloc(sizeof (struct Node));
+
+    // LINK FIRST AND SECOND NODES 
+    head->data = 7;
+    head->next = second;
+    // LINK SECOND AND THIRD NODES 
+    second->data = 23;
+    second->next = third;
+    // TERMINATED THE LIST AT THE THIRD
+    third->data = 45;
+    third->next = NULL ; 
+
+
+
+
+
+
+ return 0;
+}
